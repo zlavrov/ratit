@@ -1,4 +1,4 @@
-import { registerVueControllerComponents } from '@symfony/ux-vue';
+// import { registerVueControllerComponents } from '@symfony/ux-vue';
 import './bootstrap.js';
 /*
  * Welcome to your app's main JavaScript file!
@@ -9,5 +9,9 @@ import './bootstrap.js';
 
 // any CSS you import will output into a single css file (app.css in this case)
 import './styles/app.css';
+import { createApp } from 'vue'
+import App from './App.vue'
 
-registerVueControllerComponents(require.context('./vue/controllers', true, /\.vue$/));
+const app = createApp(App)
+app.mount('#app')
+// registerVueControllerComponents(require.context('./vue/controllers', true, /\.vue$/));
