@@ -53,9 +53,20 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        - { path: /api/v1/users/me, roles: ROLE_USER }
-        - { path: ^/api/v1/users, roles: [ ROLE_ADMIN ], methods: [ DELETE ] }
-        - { path: ^/api/v1/users, roles: [ ROLE_MANAGER, ROLE_ADMIN ], methods: [ PATCH, GET ] }
+        - {
+            path: /api/v1/users/me,
+            roles: ROLE_USER
+        }
+        - {
+            path: ^/api/v1/users,
+            roles: [ ROLE_ADMIN ],
+            methods: [ DELETE ]
+        }
+        - {
+            path: ^/api/v1/users,
+            roles: [ ROLE_MANAGER, ROLE_ADMIN ],
+            methods: [ PATCH, GET ]
+        }
         # - { path: ^/api/v1/users, roles: [ ROLE_MANAGER, ROLE_ADMIN ] }
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
