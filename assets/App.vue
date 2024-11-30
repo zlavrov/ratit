@@ -1,15 +1,26 @@
 <template>
-    <h1>{{ this.status }}</h1>
+    <div class="d-flex align-items-center py-4 bg-body-tertiary">
+        <RouterLink :to="{name: 'home'}">Home</RouterLink>
+        <RouterLink :to="{name: 'about'}">About</RouterLink>
+        <RouterLink :to="{name: 'signin'}">SignIn</RouterLink>
+        <RouterLink :to="{name: 'signup'}">SignUp</RouterLink>
+    </div>
+    <RouterView />
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            status: 'App component is ready',
-        }
-    },
-}
+    import { RouterView, RouterLink } from 'vue-router';
+
+    export default {
+        components: {
+            RouterView, RouterLink
+        },
+        data() {
+            return {
+                status: 'App component is ready',
+            }
+        },
+    }
 </script>
 
 <style>
