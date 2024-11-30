@@ -1,5 +1,5 @@
 // import { registerVueControllerComponents } from '@symfony/ux-vue';
-import './bootstrap.js';
+// import './bootstrap.js';
 /*
  * Welcome to your app's main JavaScript file!
  *
@@ -8,10 +8,24 @@ import './bootstrap.js';
  */
 
 // any CSS you import will output into a single css file (app.css in this case)
-import './styles/app.css';
 import { createApp } from 'vue'
-import App from './App.vue'
+import { createPinia } from 'pinia';
+import ToastPlugin from 'vue-toast-notification';
+import App from './App.vue';
+import router from './router';
+import './styles/app.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import 'bootstrap-icons/font/bootstrap-icons.css';
+import 'vue-toast-notification/dist/theme-bootstrap.css';
+import i18n from './i18n';
 
-const app = createApp(App)
-app.mount('#app')
+const app = createApp(App);
+
+app.use(ToastPlugin);
+app.use(createPinia());
+app.use(router);
+app.use(i18n);
+
+app.mount('#app');
 // registerVueControllerComponents(require.context('./vue/controllers', true, /\.vue$/));
