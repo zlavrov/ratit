@@ -85,4 +85,15 @@ class UserModel {
     ])]
     #[Property(example: '2000-10-25T00:00:00.000Z')]
     public ?DateTimeImmutable $updatedAt = null;
+
+    #[Groups([
+        AccessGroup::USER_READ,
+    ])]
+    #[Property(example: '2000-10-25T00:00:00.000Z')]
+    public ?DateTimeImmutable $emailVerifiedAt;
+
+    #[Groups([
+        AccessGroup::USER_READ,
+    ])]
+    public bool $emailVerified;
 }
