@@ -1,4 +1,5 @@
 <template>
+    <NavBar />
     <main class="form-signin w-100 m-auto">
         <form>
             <!-- <img class="mb-4" src="/docs/5.3/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> -->
@@ -29,43 +30,47 @@
 </template>
 
 <script>
-import axios from 'axios';
-import api from '../helper/api';
-export default {
+    import axios from 'axios';
+    import api from '../helper/api';
+    import NavBar from '../components/NavBar.vue';
 
-    data() {
-        return {
-            profile: {
-                firstName: '',
-                lastName: '',
-                email: '',
-                password: ''
+    export default {
+        components: {
+            NavBar
+        },
+        data() {
+            return {
+                profile: {
+                    firstName: '',
+                    lastName: '',
+                    email: '',
+                    password: ''
+                }
+            }
+        },
+        methods: {
+            signup() {
+                axios.post('/api/v1/signup', this.profile).then( response => {
+
+                    if (response.status === 201) {
+                            this.$router.push({name: 'signin'});
+                            this.$toast.success('Please Confirm your Email', {
+                                position: 'bottom-left',
+                                duration: 5000
+                            });
+                        }
+
+                        this.profile.email = '';
+                        this.profile.password = '';
+                        this.profile.firstName = '';
+                        this.profile.lastName = '';
+
+                }).catch( error => {
+
+                });
             }
         }
-    },
-    methods: {
-        signup() {
-            axios.post('/api/v1/signup', this.profile).then( response => {
-
-                if (response.status === 201) {
-                        this.$router.push({name: 'signin'});
-                        this.$toast.success('Please Sign In', {
-                            position: 'bottom-left',
-                            duration: 3000
-                        });
-                    }
-
-                    this.profile.email = '';
-                    this.profile.password = '';
-                    this.profile.firstName = '';
-                    this.profile.lastName = '';
-
-            }).catch( error => {
-
-            });
-        }
     }
-}
 </script>
 
 <style scoped>
